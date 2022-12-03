@@ -3,11 +3,7 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  firstName: {
-    type: Schema.Types.String,
-    require: true,
-  },
-  lastName: {
+  fullName: {
     type: Schema.Types.String,
     require: true,
   },
@@ -15,13 +11,16 @@ const userSchema = new Schema({
     type: Schema.Types.String,
     require: true,
   },
+  password: {
+    type: Schema.Types.String,
+  },
   phone: {
     type: Schema.Types.String,
   },
-  avatar: {
+  allowRules: {
     type: Schema.Types.String,
   },
-  password: {
+  accessMail: {
     type: Schema.Types.String,
   },
   id: {
