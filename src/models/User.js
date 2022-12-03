@@ -13,18 +13,23 @@ const userSchema = new Schema({
   },
   password: {
     type: Schema.Types.String,
+    require: true,
   },
   phone: {
     type: Schema.Types.String,
+    require: true,
   },
   allowRules: {
     type: Schema.Types.String,
+    require: true,
   },
   accessMail: {
     type: Schema.Types.String,
+    require: true,
   },
   id: {
     type: Schema.Types.Number,
+    require: true,
   },
 });
 
