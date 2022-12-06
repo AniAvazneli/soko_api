@@ -23,3 +23,38 @@ paths:
                 type: array
                 items:
                   type: string
+    post:
+      tags:
+        - users 
+      requestBody:
+        description: add new user
+        required: true
+        content:
+          application/json:
+            schema: 
+              type: 'object'
+              properties:
+                  fullName: 
+                    type: string
+                  email: 
+                    type: string
+                  password: 
+                    type: string
+                  phone: 
+                    type: string
+                  allowRules: 
+                    type: boolean
+                  accessMail: 
+                    type: boolean
+            example:
+              fullName: AniA
+              email: avazneli@gmail.com
+              password: nikolozi
+              phone: '#4257F5'
+              allowRules: false
+              accessMail: true
+      responses:
+        '201':
+          description: user added
+
+

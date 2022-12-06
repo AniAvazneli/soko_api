@@ -13,7 +13,7 @@ connectMongo();
 
 app.use(bodyParser.json());
 
-app.use("/api",cors(), userRouter);
-app.use('/', ...swaggerMiddleware())
+app.use("/api", cors(), userRouter);
+app.use("/", ...swaggerMiddleware());
 
 app.listen(3000);

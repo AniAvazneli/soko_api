@@ -28,7 +28,7 @@ const userSchema = new Schema({
     require: true,
   },
   id: {
-    type: Schema.Types.Number,
+    type: Schema.Types.String,
     require: true,
   },
 });
