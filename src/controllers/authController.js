@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import sendRecoverySchema from "../schemas/send-recovery-schema.js";
 import PasswordRecovery from "../models/PasswordRecovery.js";
 import { sendPasswordRecovery } from "../mail/index.js";
+import passwordRecoverySchema from "../schemas/password-recovery-schema.js";
 
 export const login = async (req, res) => {
   const { body } = req;
@@ -51,7 +52,7 @@ export const sendRecovery = async (req, res) => {
     return res.status(422).json(error.details);
   }
 
-  const { email, redirectLink } = data;
+  const { email, redirectLink } = value;
 
   const user = await User.findOne({ email });
   const hash = crypto.randomBytes(48).toString("hex");
@@ -64,4 +65,35 @@ export const sendRecovery = async (req, res) => {
   await sendPasswordRecovery(email, hash, user.fullName, redirectLink);
 
   return res.status(201).json({ message: "password recovery link sent" });
+};
+
+export const passwordReset = async (req, res) => {
+  const { body } = req;
+
+  const validator = await passwordRecoverySchema(body);
+  const { value, error } = validator.validate(body);
+
+  if (error) {
+    return res.status(422).json(error.details);
+  }
+
+  const { password, hash } = value;
+
+  const passwordRecovery = await PasswordRecovery.findOne({ hash });
+
+  if (!passwordRecovery) {
+    return res.status(422).json({ message: "მონაცემები ვერ მოიძებნა" });
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  await User.findOneAndUpdate(
+    { id: passwordRecovery.userId },
+    { password: hashedPassword }
+  );
+
+  await passwordRecovery.delete();
+
+  return res.json({ message: "new password saved successfully" });
 };
