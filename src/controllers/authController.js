@@ -35,3 +35,7 @@ export const login = async (req, res) => {
     geo: "მონაცემები არასწორია",
   });
 };
+
+export const sendPasswordRecovery = async (req, res) => {
+  const { body } = req;
+};
