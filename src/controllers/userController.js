@@ -1,9 +1,7 @@
 import User from "../models/User.js";
 import { v4 as uuidv4 } from "uuid";
 import addUserSchema from "../schemas/add-user-schema.js";
-import loginSchema from "../schemas/login-schema.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
 export const getAllUsers = async (req, res) => {
   const data = await User.find();
