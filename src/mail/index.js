@@ -1,12 +1,12 @@
 import { Edge } from "edge.js";
-import path from "path";
-import gmailTransport from "./gmail";
+import path, { join } from "path";
+import gmailTransport from "./gmail.js";
 
 const edge = new Edge({ cache: false });
 const templatesPath = join(path.resolve(), "src/mail/templates");
 edge.mount(templatesPath);
 
-const send = (to, subject, html) => {
+const sendMail = (to, subject, html) => {
   const options = {
     to,
     subject,
@@ -23,5 +23,5 @@ export const sendPasswordRecovery = async (to, hash, name, backLink) => {
     name,
   });
 
-  return send(to, "Reset Password", html);
+  return sendMail(to, "Reset Password", html);
 };

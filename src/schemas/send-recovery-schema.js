@@ -13,7 +13,7 @@ const sendRecoverySchema = async (data) => {
 
   return Joi.object({
     email: Joi.string()
-      .custom(determineIfEmailExists(email))
+      .custom(determineIfEmailExists(user))
       .email()
       .required()
       .messages({

@@ -23,38 +23,134 @@ paths:
                 type: array
                 items:
                   type: string
+  /register:
     post:
       tags:
-        - users 
+        - users
       requestBody:
         description: add new user
         required: true
         content:
           application/json:
-            schema: 
-              type: 'object'
+            schema:
+              type: "object"
               properties:
-                  fullName: 
-                    type: string
-                  email: 
-                    type: string
-                  password: 
-                    type: string
-                  phone: 
-                    type: string
-                  allowRules: 
-                    type: boolean
-                  accessMail: 
-                    type: boolean
+                fullName:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                phone:
+                  type: string
+                allowRules:
+                  type: boolean
+                accessMail:
+                  type: boolean
             example:
               fullName: AniA
               email: avazneli@gmail.com
               password: nikolozi
-              phone: '#4257F5'
+              phone: "#4257F5"
               allowRules: false
               accessMail: true
       responses:
-        '201':
+        "201":
           description: user added
-
-
+  /mobile/verify:
+    post:
+      tags:
+        - users
+      requestBody:
+        description: send code
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                phone:
+                  type: string
+      responses:
+        "200":
+          description: code sent successfully
+  /mobile/success:
+    post:
+      tags:
+        - users
+      requestBody:
+        description: check code
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                code:
+                  type: number
+      responses:
+        "200":
+          description: code sent successfully
+  /login:
+    post:
+      tags:
+        - Auth
+      requestBody:
+        description: login
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+            example:
+              email: avazneli@gmail.com
+              password: nikolozi
+      responses:
+        "200":
+          description: user login successfully
+  /password/send-link:
+    post:
+      tags:
+        - Auth
+      requestBody:
+        description: password recovery request
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                email:
+                  type: string
+                redirectLink:
+                  type: string
+            example:
+              email: avazneli@gmail.com
+              redirectLink: https://soko-frontend-7pehxyq9n-kachkacha2003.vercel.app/SignIn
+      responses:
+        "200":
+          description: sent recovery link successfully
+  /password/reset:
+    put:
+      tags:
+        - Auth
+      requestBody:
+        description: update password
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                password:
+                  type: string
+                hash:
+                  type: string
+      responses:
+        "200":
+          description: sent recovery link successfully

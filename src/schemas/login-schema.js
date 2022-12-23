@@ -1,5 +1,5 @@
 import Joi from "joi";
-import User from "../models/User";
+import User from "../models/User.js";
 
 const determineIfUserExists = (user) => (value, helpers) => {
   if (!user) {
