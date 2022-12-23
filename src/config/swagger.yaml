@@ -101,3 +101,22 @@ paths:
       responses:
         "200":
           description: sent recovery link successfully
+  /password/reset:
+    put:
+      tags:
+        - Auth
+      requestBody:
+        description: update password
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                password:
+                  type: string
+                hash:
+                  type: string
+      responses:
+        "200":
+          description: sent recovery link successfully

@@ -31,6 +31,7 @@
     "mongoose": "^6.7.4",
     "nodemailer": "^6.8.0",
     "swagger-ui-express": "^4.6.0",
+    "twilio": "^3.84.0",
     "uuid": "^9.0.0",
     "yamljs": "^0.3.0"
   },
