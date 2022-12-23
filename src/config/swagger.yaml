@@ -57,6 +57,23 @@ paths:
       responses:
         "201":
           description: user added
+  /mobile/verify:
+    post:
+      tags:
+        - users
+      requestBody:
+        description: send code
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                phone:
+                  type: string
+      responses:
+        "200":
+          description: code sent successfully
   /login:
     post:
       tags:
