@@ -79,3 +79,25 @@ paths:
       responses:
         "200":
           description: user login successfully
+  /password/send-link:
+    post:
+      tags:
+        - Auth
+      requestBody:
+        description: password recovery request
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                email:
+                  type: string
+                redirectLink:
+                  type: string
+            example:
+              email: avazneli@gmail.com
+              redirectLink: https://soko-frontend-7pehxyq9n-kachkacha2003.vercel.app/SignIn
+      responses:
+        "200":
+          description: sent recovery link successfully
