@@ -74,6 +74,23 @@ paths:
       responses:
         "200":
           description: code sent successfully
+  /mobile/success:
+    post:
+      tags:
+        - users
+      requestBody:
+        description: check code
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                code:
+                  type: number
+      responses:
+        "200":
+          description: code sent successfully
   /login:
     post:
       tags:

@@ -25,7 +25,7 @@ export const mobileVerification = async (req, res) => {
 export const verifyCode = async (req, res) => {
   const { code } = req.body;
 
-  const mobile = await MobileVerification.findOne({ code });
+  const mobile = await MobileVerification.findOne({ code: +code });
 
   if (!mobile) {
     return res.status(404).json({ message: "მონაცემები არასწორია" });
