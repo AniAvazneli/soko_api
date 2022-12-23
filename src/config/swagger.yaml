@@ -23,6 +23,7 @@ paths:
                 type: array
                 items:
                   type: string
+  /register:
     post:
       tags:
         - users

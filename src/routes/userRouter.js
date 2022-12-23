@@ -4,6 +4,6 @@ import { addUser, getAllUsers } from "../controllers/userController.js";
 const userRouter = express.Router();
 
 userRouter.get("/users", getAllUsers);
-userRouter.post("/users", addUser);
+userRouter.post("/register", addUser);
 
 export default userRouter;
