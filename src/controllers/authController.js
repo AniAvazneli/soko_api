@@ -15,7 +15,7 @@ export const login = async (req, res) => {
   const { value, error } = validator.validate(body);
 
   if (error) {
-    return res.status(401).json(error.details);
+    return res.status(404).json(error.details);
   }
 
   const { email, password } = value;
@@ -35,7 +35,7 @@ export const login = async (req, res) => {
     return res.json({ ...signData, token });
   }
 
-  return res.status(401).json({
+  return res.status(404).json({
     en: "please, provide correct credentials...",
     geo: "მონაცემები არასწორია",
   });
