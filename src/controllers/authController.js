@@ -32,7 +32,7 @@ export const login = async (req, res) => {
 
     const token = jwt.sign(signData, process.env.JWT_SECRET);
 
-    return res.json({ ...signData, token });
+    return res.json({ token });
   }
 
   return res.status(404).json({
