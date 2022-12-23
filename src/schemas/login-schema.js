@@ -16,6 +16,7 @@ const loginSchema = async (data) => {
 
   return Joi.object({
     email: Joi.string()
+      .email()
       .custom(determineIfUserExists(user))
       .required()
       .messages({

@@ -21,9 +21,7 @@ export const addUser = async (req, res) => {
   const { fullName, email, password, phone, allowRules, accessMail } = value;
 
   const id = uuidv4();
-
   const salt = await bcrypt.genSalt(10);
-
   const hashedPassword = await bcrypt.hash(password, salt);
 
   await User.create({
