@@ -1,6 +1,6 @@
 import { Edge } from "edge.js";
-import path from "path";
-import gmailTransport from "./gmail";
+import path, { join } from "path";
+import gmailTransport from "./gmail.js";
 
 const edge = new Edge({ cache: false });
 const templatesPath = join(path.resolve(), "src/mail/templates");

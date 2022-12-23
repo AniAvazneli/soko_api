@@ -4,11 +4,11 @@ const { Schema } = mongoose;
 
 const passwordRecoverySchema = new Schema({
   hash: {
-    type: Schema.Types.string,
+    type: Schema.Types.String,
     required: true,
   },
   userId: {
-    type: Schema.Types.string,
+    type: Schema.Types.String,
     required: true,
   },
 });
