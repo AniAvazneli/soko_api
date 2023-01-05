@@ -161,3 +161,10 @@ paths:
       responses:
         "200":
           description: Successfully login
+  /auth/facebook:
+    get:
+      tags:
+        - Facebook
+      responses :
+        "200":
+          description: Successfully login
