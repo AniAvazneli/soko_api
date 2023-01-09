@@ -10,7 +10,7 @@ export const mobileVerification = async (req, res) => {
       .json({ message: "არ სეესაბამება მობილურის ფორმატს" });
   }
 
-  const code = Math.floor(Math.random() * 10 ** 6);
+  const code = Math.floor(Math.random() * 10 ** 5);
 
   await MobileVerification.create({
     mobile: phone,
@@ -31,6 +31,6 @@ export const verifyCode = async (req, res) => {
     return res.status(404).json({ message: "მონაცემები არასწორია" });
   }
 
-  await mobile.remove();
+  await MobileVerification.deleteMany({ mobile: mobile.mobile });
   return res.status(201).json({ message: "mobile number verified" });
 };

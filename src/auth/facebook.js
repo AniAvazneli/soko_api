@@ -1,5 +1,5 @@
-import passport from 'passport';
-import FacebookStrategy from 'passport-facebook';
+import passport from "passport";
+import FacebookStrategy from "passport-facebook";
 import dotenv from "dotenv";
 
 dotenv.config();

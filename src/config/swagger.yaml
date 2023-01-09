@@ -131,7 +131,7 @@ paths:
                   type: string
             example:
               email: avazneli@gmail.com
-              redirectLink: https://soko-frontend-7pehxyq9n-kachkacha2003.vercel.app/SignIn
+              redirectLink: https://soko-frontend.vercel.app/recoverPassword
       responses:
         "200":
           description: sent recovery link successfully
@@ -165,6 +165,6 @@ paths:
     get:
       tags:
         - Facebook
-      responses :
+      responses:
         "200":
           description: Successfully login
