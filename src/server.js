@@ -10,17 +10,24 @@ import authRouter from "./routes/authRouter.js";
 import googleRouter from "./routes/googleRouter.js";
 import facebookRouter from "./routes/facebookRouter.js";
 
-
 const app = express();
 dotenv.config();
 connectMongo();
 
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 app.use("/api", cors(), userRouter);
 app.use("/api", cors(), authRouter);
 app.use("/api", cors(), googleRouter);
 app.use("/api", cors(), facebookRouter);
+app.use("/protected", (req, res) => {
+  res.send("works!");
+});
 app.use("/", ...swaggerMiddleware());
 
 app.listen(process.env.PORT || 3000);
