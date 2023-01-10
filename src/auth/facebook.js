@@ -7,7 +7,7 @@ dotenv.config();
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_ID,
     clientSecret: process.env.FACEBOOK_SECRET,
-    callbackURL: "https://sokoapi-production.up.railway.app/"
+    callbackURL: "https://sokoapi-production.up.railway.app/api/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ facebookId: profile.id }, function (err, user) {
@@ -22,5 +22,5 @@ passport.use(new FacebookStrategy({
     // passport.authenticate('facebook', { failureRedirect: '/login' }),
     function(req, res) {
       // Successful authentication, redirect home.
-      res.redirect('/');
+      res.redirect('/protected');
     };
