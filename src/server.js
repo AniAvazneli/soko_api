@@ -30,4 +30,9 @@ app.use("/protected", (req, res) => {
 });
 app.use("/", ...swaggerMiddleware());
 
+app.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+
 app.listen(process.env.PORT || 3000);

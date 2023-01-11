@@ -1,26 +1,53 @@
-import passport from "passport";
-import FacebookStrategy from "passport-facebook";
+import express from 'express';
+import passport, { Passport } from 'passport';
+import { Strategy as FacebookStrategy } from 'passport-facebook';
+import expressSession from 'express-session';
 import dotenv from "dotenv";
 
 dotenv.config();
 
 passport.use(new FacebookStrategy({
-    clientID: process.env.FACEBOOK_ID,
-    clientSecret: process.env.FACEBOOK_SECRET,
-    callbackURL: "https://sokoapi-production.up.railway.app/api/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-  ));
-  
-  export const Facebook = passport.authenticate('facebook');
-  
-  export const FacebookCallback = 
-    // passport.authenticate('facebook', { failureRedirect: '/login' }),
-    function(req, res) {
-      // Successful authentication, redirect home.
-      res.redirect('/protected');
-    };
+  clientID: FACEBOOK_ID,
+  clientSecret: FACEBOOK_SECRET,
+  callbackURL:'/auth/facebook/callback',
+  profileFields: ['emails', 'displayName', 'name', 'picture']
+}, (accessToken, refreshToken, profile, callback)=>{
+  callback(null, profile)
+}))
+
+passport.serializeUser((user,callback)=>{
+  callback(null, user);
+})
+
+passport.deserializeUser((user, callback)=>{
+  callback(null, user);
+})
+
+app.use(expressSession({
+  secret: 'jayantpatilapp',
+  resave: true,
+  saveUninitialized: true
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+//routes
+
+export const facebook = (req,res)=> {
+  passport.authenticate('facebook', {scope: ['email']})
+}
+
+export const facebookCallback = (req,res) => {
+  res.redirect('/protected')
+}
+
+
+
+app.get('/',(req,res)=>{
+
+  res.send(req.user? req.user: 'Not logged in, login with facebook');
+})
+
+app.listen(3000, ()=>{
+  console.log('server started on 3000');
+})
