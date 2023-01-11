@@ -1,5 +1,5 @@
 import express from 'express';
-import passport, { Passport } from 'passport';
+import passport  from 'passport';
 import { Strategy as FacebookStrategy } from 'passport-facebook';
 import expressSession from 'express-session';
 import dotenv from "dotenv";
@@ -9,7 +9,7 @@ dotenv.config();
 passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_ID,
   clientSecret: process.env.FACEBOOK_SECRET,
-  callbackURL:'/auth/facebook/callback',
+  callbackURL:'/api/auth/facebook/callback',
   profileFields: ['emails', 'displayName', 'name', 'picture']
 }, (accessToken, refreshToken, profile, callback)=>{
   callback(null, profile)
@@ -26,12 +26,8 @@ passport.deserializeUser((user, callback)=>{
 
 //routes
 
-export const facebook = (req,res)=> {
-  passport.authenticate('facebook', {scope: ['email']})
-}
-
 export const facebookCallback = (req,res) => {
-  res.redirect('/protected')
+  console.log('facebook works')
 }
 
 
