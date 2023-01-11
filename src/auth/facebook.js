@@ -7,8 +7,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 passport.use(new FacebookStrategy({
-  clientID: FACEBOOK_ID,
-  clientSecret: FACEBOOK_SECRET,
+  clientID: process.env.FACEBOOK_ID,
+  clientSecret: process.env.FACEBOOK_SECRET,
   callbackURL:'/auth/facebook/callback',
   profileFields: ['emails', 'displayName', 'name', 'picture']
 }, (accessToken, refreshToken, profile, callback)=>{
@@ -23,14 +23,7 @@ passport.deserializeUser((user, callback)=>{
   callback(null, user);
 })
 
-app.use(expressSession({
-  secret: 'jayantpatilapp',
-  resave: true,
-  saveUninitialized: true
-}))
 
-app.use(passport.initialize());
-app.use(passport.session());
 //routes
 
 export const facebook = (req,res)=> {
@@ -43,11 +36,4 @@ export const facebookCallback = (req,res) => {
 
 
 
-app.get('/',(req,res)=>{
 
-  res.send(req.user? req.user: 'Not logged in, login with facebook');
-})
-
-app.listen(3000, ()=>{
-  console.log('server started on 3000');
-})

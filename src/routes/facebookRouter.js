@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { Facebook, FacebookCallback } from "../auth/facebook.js";
+import { facebook, facebookCallback } from "../auth/facebook.js";
 
 const facebookRouter = express.Router();
 
