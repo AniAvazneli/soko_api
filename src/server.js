@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 
 app.use("/api", cors(), userRouter);
 app.use("/api", cors(), authRouter);
-app.use("/", cors(), googleRouter);
+app.use("/auth", cors(), googleRouter);
 app.use("/api", cors(), facebookRouter);
 app.use("/", ...swaggerMiddleware());
 
@@ -45,7 +45,7 @@ app.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-app.use("/protected", (req, res) => {
+app.use("/auth/protected", (req, res) => {
   res.send("works!");
 });
 

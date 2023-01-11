@@ -5,9 +5,9 @@ import passport from "passport";
 const googleRouter = express.Router();
 
 googleRouter.get(
-  "/auth/google",
+  "/google",
   passport.authenticate("google", { scope: ["email", "profile"] })
 );
-googleRouter.get("/auth/google/callback", googleCallback);
+googleRouter.get("/google/callback", googleCallback);
 
 export default googleRouter;

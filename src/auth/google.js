@@ -27,7 +27,6 @@ passport.deserializeUser((user, done) => {
 });
 
 export const googleCallback = async (req, res) => {
-  passport.authenticate("google", {
-    successRedirect: "/protected",
-  });
+  console.log(req);
+  res.redirect("/auth/protected");
 };
