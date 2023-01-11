@@ -154,13 +154,6 @@ paths:
       responses:
         "200":
           description: sent recovery link successfully
-  /auth/google:
-    get:
-      tags:
-        - Google
-      responses:
-        "200":
-          description: Successfully login
   /auth/facebook:
     get:
       tags:
