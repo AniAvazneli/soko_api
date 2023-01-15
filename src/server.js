@@ -7,16 +7,38 @@ import connectMongo from "./config/mongo.js";
 import userRouter from "./routes/userRouter.js";
 import swaggerMiddleware from "./middlewares/swagger-middleware.js";
 import authRouter from "./routes/authRouter.js";
-import googleRouter from "./routes/googleRouter.js";
 import facebookRouter from "./routes/facebookRouter.js";
 import expressSession from "express-session";
 import passport from "passport";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import { googleCallback } from "./auth/google.js";
 
 const app = express();
 dotenv.config();
 connectMongo();
 
 app.use(bodyParser.json());
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GMAIL_CLIENT_ID,
+      clientSecret: process.env.GMAIL_CLIENT_SECRET,
+      callbackURL: "/auth/google/callback",
+    },
+    (accessToken, refreshToken, profile, done) => {
+      done(null, profile);
+    }
+  )
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
 
 app.use(
   expressSession({
@@ -34,23 +56,25 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile email"] })
+);
+
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google"),
+  googleCallback
+);
+
 app.use("/api", cors(), userRouter);
 app.use("/api", cors(), authRouter);
-app.use("/auth", cors(), googleRouter);
 app.use("/api", cors(), facebookRouter);
 app.use("/", ...swaggerMiddleware());
 
 app.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
-});
-
-app.use("/auth/protected", (req, res) => {
-  res.send("works!");
-});
-
-app.get("/fail", (req, res) => {
-  res.send(req.user ? req.user : "Not logged in, login with facebook");
 });
 
 app.listen(process.env.PORT || 3000);

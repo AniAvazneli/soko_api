@@ -7,7 +7,7 @@ export const mobileVerification = async (req, res) => {
   if (!/^[+]\d{12}$/.test(phone)) {
     return res
       .status(404)
-      .json({ message: "არ სეესაბამება მობილურის ფორმატს" });
+      .json({ message: "არ შეესაბამება მობილურის ფორმატს" });
   }
 
   const code = Math.floor(Math.random() * 10 ** 5);
