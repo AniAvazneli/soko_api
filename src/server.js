@@ -12,6 +12,8 @@ import expressSession from "express-session";
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { googleCallback } from "./auth/google.js";
+import { Strategy as FacebookStrategy } from 'passport-facebook';
+import { facebookCallback } from "./auth/facebook.js";
 
 const app = express();
 dotenv.config();
@@ -32,6 +34,16 @@ passport.use(
   )
 );
 
+passport.use(new FacebookStrategy({
+  clientID: process.env.FACEBOOK_ID,
+  clientSecret: process.env.FACEBOOK_SECRET,
+  callbackURL:'/auth/facebook/callback',
+  profileFields: ['emails', 'displayName', 'name', 'picture']
+}, (accessToken, refreshToken, profile, callback)=>{
+  callback(null, profile)
+}))
+
+
 passport.serializeUser((user, done) => {
   done(null, user);
 });
@@ -42,7 +54,7 @@ passport.deserializeUser((user, done) => {
 
 app.use(
   expressSession({
-    secret: "jayantpatilapp",
+    secret: process.env.EXPRESS_SECRET,
     resave: true,
     saveUninitialized: true,
   })
@@ -67,9 +79,11 @@ app.get(
   googleCallback
 );
 
+app.get("/auth/facebook", passport.authenticate('facebook', {scope: ['email']}));
+app.get("/auth/facebook/callback",passport.authenticate("facebook"), facebookCallback);
+
 app.use("/api", cors(), userRouter);
 app.use("/api", cors(), authRouter);
-app.use("/api", cors(), facebookRouter);
 app.use("/", ...swaggerMiddleware());
 
 app.get("/logout", (req, res) => {
