@@ -1,3 +1,4 @@
+import User from "../models/User.js";
 //routes
 
 export const facebookCallback = async (req,res) => {
@@ -6,22 +7,26 @@ export const facebookCallback = async (req,res) => {
     return res.status(404).json({ message: "მონაცემები არასწორია" });
   }
   const {
-    emails,
-    name: { familyName, givenName },
+    email,
+    name,
   } = req.user;
-  const validated = emails
-    .filter((email) => email.verified)
-    .map((email) => email.value);
 
-  const users = await User.findOne();
+  const user = await User.findOne({email});
 
-  const findUser = users.find((user) => validated.includes(user.email));
-  if (findUser) {
+  if (user) {
+    const signData = {
+      fullName: user.fullName,
+      email: user.email,
+      phone: user.phone,
+    };
+
+    const token = jwt.sign(signData, process.env.JWT_SECRET);
+
+    return res.json({ token });
   } else {
     return res.json({
-      firstName: givenName,
-      lastName: familyName,
-      email: validated[0],
+      name,
+      email,
     });
   }
 }
