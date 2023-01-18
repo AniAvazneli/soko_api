@@ -26,13 +26,15 @@ passport.use(
     {
       clientID: process.env.GMAIL_CLIENT_ID,
       clientSecret: process.env.GMAIL_CLIENT_SECRET,
-      callbackURL: "http://sokoapi-production.up.railway.app/auth/google/callback",
+      callbackURL: "https://sokoapi-production.up.railway.app/auth/google/callback",
     },
     (accessToken, refreshToken, profile, done) => {
       done(null, profile);
     }
   )
 );
+
+
 
 passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_ID,
