@@ -39,7 +39,7 @@ passport.use(
 passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_ID,
   clientSecret: process.env.FACEBOOK_SECRET,
-  callbackURL:'/auth/facebook/callback',
+  callbackURL:'https://sokoapi-production.up.railway.app/auth/facebook/callback',
   profileFields: ['emails', 'displayName', 'name', 'picture']
 }, (accessToken, refreshToken, profile, callback)=>{
   callback(null, profile)
