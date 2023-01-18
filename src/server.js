@@ -26,7 +26,7 @@ passport.use(
     {
       clientID: process.env.GMAIL_CLIENT_ID,
       clientSecret: process.env.GMAIL_CLIENT_SECRET,
-      callbackURL: "/auth/google/callback",
+      callbackURL: "http://sokoapi-production.up.railway.app/auth/google/callback",
     },
     (accessToken, refreshToken, profile, done) => {
       done(null, profile);
