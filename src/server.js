@@ -20,6 +20,7 @@ dotenv.config();
 connectMongo();
 
 app.use(bodyParser.json());
+app.use(cors())
 
 passport.use(
   new GoogleStrategy(
