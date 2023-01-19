@@ -73,17 +73,19 @@ app.use((req, res, next) => {
 
 app.get(
   "/auth/google",
+  cors(),
   passport.authenticate("google", { scope: ["profile email"] })
 );
 
 app.get(
   "/auth/google/callback",
+  cors(),
   passport.authenticate("google"),
   googleCallback
 );
 
-app.get("/auth/facebook", passport.authenticate('facebook', {scope: ['email']}));
-app.get("/auth/facebook/callback",passport.authenticate("facebook"), facebookCallback);
+app.get("/auth/facebook",cors(), passport.authenticate('facebook', {scope: ['email']}));
+app.get("/auth/facebook/callback",cors(), passport.authenticate("facebook"), facebookCallback);
 
 app.use("/api", cors(), userRouter);
 app.use("/api", cors(), authRouter);
