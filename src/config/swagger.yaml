@@ -154,3 +154,83 @@ paths:
       responses:
         "200":
           description: sent recovery link successfully
+  /events:
+    get:
+      tags:
+        - Event
+      responses:
+        "200":
+          description: get all event
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    post:
+      tags:
+        - Event
+      requestBody:
+        description: add new event
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: string
+                id:
+                  type: string
+      responses:
+        "200":
+          description: new event add successfully
+  /event/{id}:
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - Event
+      requestBody:
+        description: add new event
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: string
+                id:
+                  type: string
+      responses:
+        "200":
+          description: event updated successfully
+    delete:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - Event
+      responses:
+        "200":
+          description: event removed successfully
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - Event
+      responses:
+        "200":
+          description: event fetch successfully
