@@ -1,6 +1,6 @@
 import Event from "../models/Event.js";
 import { v4 as uuidv4 } from "uuid";
-import createEventSchema from "../schemas/create-event-schema";
+import createEventSchema from "../schemas/create-event-schema.js";
 
 export const getAllEvents = async (req, res) => {
   const data = await Event.find();

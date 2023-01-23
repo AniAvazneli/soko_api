@@ -180,12 +180,10 @@ paths:
               properties:
                 name:
                   type: string
-                id:
-                  type: string
       responses:
         "200":
           description: new event add successfully
-  /event/{id}:
+  /events/{id}:
     put:
       parameters:
         - in: path
@@ -204,8 +202,6 @@ paths:
               type: "object"
               properties:
                 name:
-                  type: string
-                id:
                   type: string
       responses:
         "200":
