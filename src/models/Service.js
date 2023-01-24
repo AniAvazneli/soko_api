@@ -11,6 +11,10 @@ const serviceSchema = new Schema({
         type: Schema.Types.String,
         require: true,
     },
+    eventType : {
+        type: Schema.Types.Mixed,
+        require: true,
+    },
     city : {
         type: Schema.Types.String,
         require: false,
@@ -20,27 +24,27 @@ const serviceSchema = new Schema({
         require: false,
     },
     flexLocation : {
-        type: Schema.Types.String,
+        type: Schema.Types.Boolean,
         require: false,
     },
     price: {
-        type: Schema.Types.String,
+        type: Schema.Types.Number,
         require: false,
     },
     flexPrice: {
-        type: Schema.Types.String,
+        type: Schema.Types.Boolean,
         require: false,
     },
     description: {
         type: Schema.Types.String,
         require: false,
     },
-    question: {
-        type: Schema.Types.String,
+    questions: {
+        type: Schema.Types.Mixed,
         require: false,
     },
     gallery : {
-        type: Schema.Types.String,
+        type: Schema.Types.Mixed,
         require: false,
     }
 })
