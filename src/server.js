@@ -15,6 +15,7 @@ import { googleCallback } from "./auth/google.js";
 import { Strategy as FacebookStrategy } from 'passport-facebook';
 import { facebookCallback } from "./auth/facebook.js";
 import eventRouter from "./routes/eventRouter.js";
+import miniEventRouter from "./routes/miniEventRouter.js";
 
 const app = express();
 dotenv.config();
@@ -91,6 +92,7 @@ app.get("/auth/facebook/callback",cors(), passport.authenticate("facebook"), fac
 app.use("/api", cors(), userRouter);
 app.use("/api", cors(), authRouter);
 app.use("/api", cors(), eventRouter);
+app.use("/api", cors(), miniEventRouter);
 app.use("/", ...swaggerMiddleware());
 
 app.get("/logout", (req, res) => {

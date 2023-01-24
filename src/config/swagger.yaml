@@ -230,3 +230,71 @@ paths:
       responses:
         "200":
           description: event fetch successfully
+  /miniEvents:
+    get:
+      tags:
+        - MiniEvent
+      responses:
+        "200":
+          description: get all miniEvent
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    post:
+      tags:
+        - MiniEvent
+      requestBody:
+        description: add new miniEvent
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: string
+                eventId:
+                  type: string
+      responses:
+        "200":
+          description: new miniEvent add successfully
+  /miniEvents/{id}:
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - MiniEvent
+      requestBody:
+        description: add new miniEvent
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: string
+                eventId:
+                  type: string
+      responses:
+        "200":
+          description: miniEvent updated successfully
+    delete:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - MiniEvent
+      responses:
+        "200":
+          description: miniEvent removed successfully
