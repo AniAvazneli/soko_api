@@ -7,6 +7,12 @@ const addServiceSchema = async () => {
       "string.min": "user should include 2 characters or more",
       "any.required": "name is required",
     }),
+    eventType: Joi.array().items(
+      Joi.string().required().messages({
+        "array.base": "eventType should be a array",
+        "any.required": "eventType is required",
+      })
+    ),
     city: Joi.string().required().messages({
       "string.base": "city should be a string",
       "any.required": "city is not required",

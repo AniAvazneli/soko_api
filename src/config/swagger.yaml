@@ -298,3 +298,135 @@ paths:
       responses:
         "200":
           description: miniEvent removed successfully
+  /services:
+    get:
+      tags:
+        - Services
+      responses:
+        "200":
+          description: get all service
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    post:
+      tags:
+        - Services
+      requestBody:
+        description: add new service
+        required: true
+        content:
+          multipart/from-data:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: string
+                id:
+                  type: string
+                eventType:
+                  type: array
+                  items:
+                    type: string
+                city:
+                  type: string
+                address:
+                  type: string
+                flexLocation:
+                  type: boolean
+                price:
+                  type: number
+                flexPrice:
+                  type: boolean
+                description:
+                  type: string
+                questions:
+                  type: array
+                  items:
+                    type: object
+                    properties: 
+                      question:
+                        type: string
+                      answers: 
+                        type: array
+                        items: 
+                          type: string
+                gallery:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        "200":
+          description: new service add successfully
+  /services/{id}:
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - Services
+      requestBody:
+        description: add new service
+        required: true
+        content:
+          multipart/from-data:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: string
+                id:
+                  type: string
+                eventType:
+                  type: array
+                  items:
+                    type: string
+                city:
+                  type: string
+                address:
+                  type: string
+                flexLocation:
+                  type: boolean
+                price:
+                  type: number
+                flexPrice:
+                  type: boolean
+                description:
+                  type: string
+                questions:
+                  type: array
+                  items:
+                    type: object
+                    properties: 
+                      question:
+                        type: string
+                      answers: 
+                        type: array
+                        items: 
+                          type: string
+                gallery:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        "200":
+          description: service updated successfully
+    delete:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - Services
+      responses:
+        "200":
+          description: service removed successfully
