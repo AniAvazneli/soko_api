@@ -11,6 +11,10 @@ const serviceSchema = new Schema({
         type: Schema.Types.String,
         require: true,
     },
+    useId : {
+        type: Schema.Types.String,
+        require: true,
+    },
     eventType : {
         type: Schema.Types.Mixed,
         require: true,

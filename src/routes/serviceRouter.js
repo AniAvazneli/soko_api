@@ -10,7 +10,7 @@ import multer from "multer"
 const serviceRouter = express.Router();
 
 serviceRouter.get("/services", getAllServices);
-serviceRouter.post("/services",multer({dest: 'public/storage'}).array('images'), createService);
+serviceRouter.post("/services",multer({dest: 'public/storage'}).array('gallery'), createService);
 serviceRouter.put("/services/:id", updateService);
 serviceRouter.delete("/services/:id", deleteService);
 

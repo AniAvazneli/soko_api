@@ -318,30 +318,39 @@ paths:
         description: add new service
         required: true
         content:
-          multipart/from-data:
+          multipart/form-data:
             schema:
               type: "object"
               properties:
                 name:
                   type: string
-                id:
+                  example: ქორწილის გადაღება
+                useId:
                   type: string
+                  example: 121212
                 eventType:
                   type: array
                   items:
                     type: string
+                    example: ვიდეოგრაფია
                 city:
                   type: string
+                  example: გორი
                 address:
                   type: string
+                  example: მშვიდობის 17
                 flexLocation:
                   type: boolean
+                  example: false
                 price:
                   type: number
+                  example: 2500
                 flexPrice:
                   type: boolean
+                  example: false
                 description:
                   type: string
+                  example: გადავიღებ ქორწილის ვიდეოს
                 questions:
                   type: array
                   items:
@@ -375,13 +384,13 @@ paths:
         description: add new service
         required: true
         content:
-          multipart/from-data:
+          multipart/form-data:
             schema:
               type: "object"
               properties:
                 name:
                   type: string
-                id:
+                useId:
                   type: string
                 eventType:
                   type: array

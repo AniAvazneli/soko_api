@@ -10,8 +10,11 @@ export const getAllServices = async (req, res) => {
 export const createService = async (req, res) => {
   const { file, body } = req;
 
-  const validator = await addServiceSchema(body);
-  const { value, error } = validator.validate(body);
+  // console.log(body.questions.split(","))
+  const eventTypeIdentifer = Array.isArray(body.eventType) ? body.eventType : body.eventType.split(",")
+
+  const validator = await addServiceSchema({...body,eventType : eventTypeIdentifer});
+  const { value, error } = validator.validate({...body,eventType : eventTypeIdentifer});
 
   if (error) {
     return res.status(401).json(error.details);
