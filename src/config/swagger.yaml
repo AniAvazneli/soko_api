@@ -351,17 +351,17 @@ paths:
                 description:
                   type: string
                   example: გადავიღებ ქორწილის ვიდეოს
-                questions:
-                  type: array
-                  items:
-                    type: object
-                    properties: 
-                      question:
-                        type: string
-                      answers: 
-                        type: array
-                        items: 
-                          type: string
+                # questions:
+                #   type: array
+                #   items:
+                #     type: object
+                #     properties: 
+                #       question:
+                #         type: string
+                #       answers: 
+                #         type: array
+                #         items: 
+                #           type: string
                 gallery:
                   type: array
                   items:
@@ -390,35 +390,44 @@ paths:
               properties:
                 name:
                   type: string
+                  example: დაბადების დღის გადაღება
                 useId:
                   type: string
+                  example: 121212
                 eventType:
                   type: array
                   items:
                     type: string
+                    example: ფოტოგრაფია
                 city:
                   type: string
+                  example: თბილისი
                 address:
                   type: string
+                  example: ბაკურიანის 17
                 flexLocation:
                   type: boolean
+                  example: false
                 price:
                   type: number
+                  example: 5151
                 flexPrice:
                   type: boolean
+                  example: false
                 description:
                   type: string
-                questions:
-                  type: array
-                  items:
-                    type: object
-                    properties: 
-                      question:
-                        type: string
-                      answers: 
-                        type: array
-                        items: 
-                          type: string
+                  example: ფოტოგრაფის მომსახურება
+                # questions:
+                #   type: array
+                #   items:
+                #     type: object
+                #     properties: 
+                #       question:
+                #         type: string
+                #       answers: 
+                #         type: array
+                #         items: 
+                #           type: string
                 gallery:
                   type: array
                   items:
