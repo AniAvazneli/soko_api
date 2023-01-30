@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const businessProfileSchema = new Schema({
-  userID: {
+  id: {
     type: Schema.Types.String,
     require: true,
   },
@@ -24,7 +24,7 @@ const businessProfileSchema = new Schema({
     require: true,
   },
   rate: {
-    type: Schema.Types.String,
+    type: Schema.Types.Number,
     require: true,
   },
   viewedNumber: {
@@ -43,12 +43,11 @@ const businessProfileSchema = new Schema({
     type: Schema.Types.Mixed,
     require: true,
   },
-  services: {
-    type: Schema.Types.Mixed,
-    require: true,
-  },
 });
 
-const BusinessProfile = mongoose.model("businessProfile", businessProfileSchema);
+const BusinessProfile = mongoose.model(
+  "businessProfile",
+  businessProfileSchema
+);
 
 export default BusinessProfile;

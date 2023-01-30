@@ -51,12 +51,6 @@ const createBusinessProfileSchema = async () => {
         "any.required": "socials is required",
       })
     ),
-    services: Joi.array().items(
-      Joi.string().required().messages({
-        "array.base": "socials should be a array",
-        "any.required": "socials is required",
-      })
-    ),
   });
 };
 
