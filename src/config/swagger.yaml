@@ -230,13 +230,13 @@ paths:
       responses:
         "200":
           description: event fetch successfully
-  /miniEvents:
+  /category:
     get:
       tags:
-        - MiniEvent
+        - Category
       responses:
         "200":
-          description: get all miniEvent
+          description: get all category
           content:
             application/json:
               schema:
@@ -245,9 +245,9 @@ paths:
                   type: string
     post:
       tags:
-        - MiniEvent
+        - Category
       requestBody:
-        description: add new miniEvent
+        description: add new category
         required: true
         content:
           application/json:
@@ -256,12 +256,10 @@ paths:
               properties:
                 name:
                   type: string
-                eventId:
-                  type: string
       responses:
         "200":
-          description: new miniEvent add successfully
-  /miniEvents/{id}:
+          description: new category add successfully
+  /category/{id}:
     put:
       parameters:
         - in: path
@@ -270,9 +268,62 @@ paths:
             type: string
           required: true
       tags:
-        - MiniEvent
+        - Category
       requestBody:
-        description: add new miniEvent
+        description: add new category
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: string
+      responses:
+        "200":
+          description: category updated successfully
+    delete:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - Category
+      responses:
+        "200":
+          description: category removed successfully
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - Category
+      responses:
+        "200":
+          description: category fetch successfully
+  /subCategory:
+    get:
+      tags:
+        - subCategory
+      responses:
+        "200":
+          description: get all subCategory
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    post:
+      tags:
+        - subCategory
+      requestBody:
+        description: add new subCategory
         required: true
         content:
           application/json:
@@ -285,7 +336,32 @@ paths:
                   type: string
       responses:
         "200":
-          description: miniEvent updated successfully
+          description: new subCategory add successfully
+  /subCategory/{id}:
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - subCategory
+      requestBody:
+        description: add new subCategory
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: string
+                eventId:
+                  type: string
+      responses:
+        "200":
+          description: subCategory updated successfully
     delete:
       parameters:
         - in: path
@@ -294,10 +370,10 @@ paths:
             type: string
           required: true
       tags:
-        - MiniEvent
+        - subCategory
       responses:
         "200":
-          description: miniEvent removed successfully
+          description: subCategory removed successfully
   /services:
     get:
       tags:
@@ -345,6 +421,12 @@ paths:
                 price:
                   type: number
                   example: 2500
+                currency:
+                  type: string
+                  example: "₾"
+                unit:
+                  type: string
+                  example: "per hour"
                 flexPrice:
                   type: boolean
                   example: false
@@ -411,6 +493,12 @@ paths:
                 price:
                   type: number
                   example: 5151
+                currency:
+                  type: string
+                  example: "₾"
+                unit:
+                  type: string
+                  example: "per hour"
                 flexPrice:
                   type: boolean
                   example: false

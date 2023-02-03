@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const miniEventSchema = new Schema({
+const subCategorySchema = new Schema({
   eventId: {
     type: Schema.Types.String,
     require: true,
@@ -17,6 +17,6 @@ const miniEventSchema = new Schema({
   },
 });
 
-const miniEvent = mongoose.model("MiniEvent", miniEventSchema);
+const subCategory = mongoose.model("subCategory", subCategorySchema);
 
-export default miniEvent;
+export default subCategory;

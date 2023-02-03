@@ -35,6 +35,14 @@ const addServiceSchema = async () => {
       "number.base": "price should be a number",
       "any.required": "price is not required",
     }),
+    currency: Joi.string().required().messages({
+      "number.base": "currency should be a number",
+      "any.required": "currency is not required",
+    }),
+    unit: Joi.string().required().messages({
+      "number.base": "unit should be a number",
+      "any.required": "unit is not required",
+    }),
     flexPrice: Joi.boolean().required().messages({
       "boolean.base": "flexPrice should be a boolean",
       "any.required": "flexPrice is not required",

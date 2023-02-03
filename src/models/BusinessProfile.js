@@ -43,6 +43,10 @@ const businessProfileSchema = new Schema({
     type: Schema.Types.Mixed,
     require: true,
   },
+  tags: {
+    type: Schema.Types.Mixed,
+    require: true,
+  },
 });
 
 const BusinessProfile = mongoose.model(

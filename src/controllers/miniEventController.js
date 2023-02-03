@@ -1,16 +1,16 @@
 import miniEvent from "../models/MiniEvent.js";
 import { v4 as uuidv4 } from "uuid";
-import createMiniEventSchema from "../schemas/create-miniEvent-schema.js";
+import createSubCategoryRouterSchema from "../schemas/create-miniEvent-schema.js";
 
-export const getAllMiniEvents = async (req, res) => {
+export const getAllSubCategories = async (req, res) => {
   const data = await miniEvent.find();
   return res.json(data);
 };
 
-export const createMiniEvent = async (req, res) => {
+export const createSubCategory = async (req, res) => {
   const { body } = req;
 
-  const validator = await createMiniEventSchema(body);
+  const validator = await createSubCategoryRouterSchema(body);
   const { value, error } = validator.validate(body);
 
   if (error) {
@@ -30,7 +30,7 @@ export const createMiniEvent = async (req, res) => {
   return res.status(201).json({ message: "Event created successfully" });
 };
 
-export const updateMiniEvent = async (req, res) => {
+export const updateSubCategory = async (req, res) => {
   const { params, body } = req;
 
   const event = await miniEvent.findOne({ id: params.id });
@@ -41,7 +41,7 @@ export const updateMiniEvent = async (req, res) => {
       .json({ message: "there is no miniEvent with this id" });
   }
 
-  const validator = await createMiniEventSchema(body);
+  const validator = await createSubCategoryRouterSchema(body);
   const { value, error } = validator.validate(body);
 
   if (error) {
@@ -62,7 +62,7 @@ export const updateMiniEvent = async (req, res) => {
   return res.status(200).json({ message: "miniEvent update successfully" });
 };
 
-export const deleteMiniEvent = async (req, res) => {
+export const deleteSubCategory = async (req, res) => {
   const { params } = req;
 
   const event = await miniEvent.findOne({ id: params.id });

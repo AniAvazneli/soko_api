@@ -35,6 +35,14 @@ const serviceSchema = new Schema({
         type: Schema.Types.Number,
         require: false,
     },
+    currency: {
+        type: Schema.Types.String,
+        require: false,
+    },
+    unit: {
+        type: Schema.Types.String,
+        require: false,
+    },
     flexPrice: {
         type: Schema.Types.Boolean,
         require: false,

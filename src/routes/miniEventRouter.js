@@ -1,16 +1,16 @@
 import express from "express";
 import {
-  getAllMiniEvents,
-  createMiniEvent,
-  updateMiniEvent,
-  deleteMiniEvent,
+  getAllSubCategories,
+  createSubCategory,
+  updateSubCategory,
+  deleteSubCategory,
 } from "../controllers/miniEventController.js";
 
-const miniEventRouter = express.Router();
+const subCategoryRouter = express.Router();
 
-miniEventRouter.get("/miniEvents", getAllMiniEvents);
-miniEventRouter.post("/miniEvents", createMiniEvent);
-miniEventRouter.put("/miniEvents/:id", updateMiniEvent);
-miniEventRouter.delete("/miniEvents/:id", deleteMiniEvent);
+subCategoryRouter.get("/subCategory", getAllSubCategories);
+subCategoryRouter.post("/subCategory", createSubCategory);
+subCategoryRouter.put("/subCategory/:id", updateSubCategory);
+subCategoryRouter.delete("/subCategory/:id", deleteSubCategory);
 
-export default miniEventRouter;
+export default subCategoryRouter;

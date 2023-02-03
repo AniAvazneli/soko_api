@@ -28,6 +28,7 @@ export const createBusinessProfile = async (req, res) => {
     likes,
     littleDescription,
     socials,
+    tags,
   } = value;
 
   const id = uuidv4();
@@ -44,6 +45,7 @@ export const createBusinessProfile = async (req, res) => {
     likes,
     littleDescription,
     socials,
+    tags,
   });
 
   return res
@@ -80,6 +82,7 @@ export const updateBusinessProfile = async (req, res) => {
     likes,
     littleDescription,
     socials,
+    tags,
   } = value;
 
   await BusinessProfile.findOneAndUpdate(
@@ -95,6 +98,7 @@ export const updateBusinessProfile = async (req, res) => {
       likes,
       littleDescription,
       socials,
+      tags,
     }
   );
 
