@@ -536,3 +536,131 @@ paths:
       responses:
         "200":
           description: service removed successfully
+  /businessProfiles:
+    get:
+      tags:
+        - BusinessProfile
+      responses:
+        "200":
+          description: get all businessProfile
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    post:
+      tags:
+        - BusinessProfile
+      requestBody:
+        description: add new businessProfile
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: "object"
+              properties:
+                avatar:
+                  type: string
+                  items:
+                    type: string
+                    format: binary
+                businessName:
+                  type: string
+                  example: შოკოტელა - ხელნაკეთი შოკოლადები
+                memberSince:
+                  type: string
+                  example: 01-04-2023
+                experience:
+                  type: string
+                  example: ტკბილეულის დამზადების 5 წლიანი გამოცდილება
+                rate:
+                  type: number
+                  example: 5
+                viewedNumber:
+                  type: number
+                  example: 857
+                likes:
+                  type: number
+                  example: 54
+                littleDescription:
+                  type: string
+                  example: ბელგიური, უმაღლესი ხარისხის შოკოლადის დამზადება
+                flexPrice:
+                  type: boolean
+                  example: false
+                eventType:
+                  type: array
+                  items:
+                    type: string
+                    example: "facebook.com/shokotela"
+      responses:
+        "200":
+          description: new businessProfile add successfully
+  /businessProfiles/{id}:
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - BusinessProfile
+      requestBody:
+        description: add new BusinessProfile
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: "object"
+              properties:
+                avatar:
+                  type: string
+                  items:
+                    type: string
+                    format: binary
+                businessName:
+                  type: string
+                  example: შოკოტელა - ხელნაკეთი შოკოლადები
+                memberSince:
+                  type: string
+                  example: 01-04-2023
+                experience:
+                  type: string
+                  example: ტკბილეულის დამზადების 5 წლიანი გამოცდილება
+                rate:
+                  type: number
+                  example: 5
+                viewedNumber:
+                  type: number
+                  example: 857
+                likes:
+                  type: number
+                  example: 54
+                littleDescription:
+                  type: string
+                  example: ბელგიური, უმაღლესი ხარისხის შოკოლადის დამზადება
+                flexPrice:
+                  type: boolean
+                  example: false
+                eventType:
+                  type: array
+                  items:
+                    type: string
+                    example: "facebook.com/shokotela"
+      responses:
+        "200":
+          description: BusinessProfile updated successfully
+    delete:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      tags:
+        - BusinessProfile
+      responses:
+        "200":
+          description: BusinessProfile removed successfully

@@ -18,6 +18,7 @@ import eventRouter from "./routes/eventRouter.js";
 import miniEventRouter from "./routes/miniEventRouter.js";
 import serviceRouter from "./routes/serviceRouter.js";
 import categoryRouter from "./routes/categoryRouter.js";
+import businessProfileRouter from "./routes/businessProfileRouter.js";
 
 const app = express();
 dotenv.config();
@@ -97,6 +98,7 @@ app.use("/api", cors(), eventRouter);
 app.use("/api", cors(), categoryRouter);
 app.use("/api", cors(), miniEventRouter);
 app.use("/api", cors(), serviceRouter);
+app.use("/api", cors(), businessProfileRouter);
 app.use("/", ...swaggerMiddleware());
 
 app.get("/logout", (req, res) => {
