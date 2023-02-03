@@ -561,7 +561,7 @@ paths:
               type: "object"
               properties:
                 avatar:
-                  type: string
+                  type: array
                   items:
                     type: string
                     format: binary
@@ -586,14 +586,16 @@ paths:
                 littleDescription:
                   type: string
                   example: ბელგიური, უმაღლესი ხარისხის შოკოლადის დამზადება
-                flexPrice:
-                  type: boolean
-                  example: false
-                eventType:
+                socials:
                   type: array
                   items:
                     type: string
-                    example: "facebook.com/shokotela"
+                    example: facebook.com/shokotela
+                tags:
+                  type: array
+                  items:
+                    type: string
+                    example: შოკოლადი
       responses:
         "200":
           description: new businessProfile add successfully
@@ -616,7 +618,7 @@ paths:
               type: "object"
               properties:
                 avatar:
-                  type: string
+                  type: array
                   items:
                     type: string
                     format: binary
@@ -641,14 +643,16 @@ paths:
                 littleDescription:
                   type: string
                   example: ბელგიური, უმაღლესი ხარისხის შოკოლადის დამზადება
-                flexPrice:
-                  type: boolean
-                  example: false
-                eventType:
+                socials:
                   type: array
                   items:
                     type: string
-                    example: "facebook.com/shokotela"
+                    example: facebook.com/shokotela
+                tags:
+                  type: array
+                  items:
+                    type: string
+                    example: შოკოლადი
       responses:
         "200":
           description: BusinessProfile updated successfully
