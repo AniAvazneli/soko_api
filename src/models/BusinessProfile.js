@@ -7,6 +7,10 @@ const businessProfileSchema = new Schema({
     type: Schema.Types.String,
     require: true,
   },
+  userID:{
+    type: Schema.Types.String,
+    require: false,
+  },
   avatar: {
     type: Schema.Types.String,
     require: true,

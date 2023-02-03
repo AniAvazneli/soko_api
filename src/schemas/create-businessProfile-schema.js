@@ -7,11 +7,12 @@ const createBusinessProfileSchema = async () => {
       "string.min": "userID should include 2 characters or more",
       "any.required": "userID is required",
     }),
-    avatar: Joi.string().min(2).required().messages({
-      "string.base": "avatar should be a string",
-      "string.min": "avatar should include 2 characters or more",
-      "any.required": "avatar is required",
-    }),
+    avatar: Joi.array().items(
+      Joi.string().required().messages({
+        "array.base": "avatar should be a array",
+        "any.required": "avatar is not required",
+      })
+    ),
     businessName: Joi.string().min(2).required().messages({
       "string.base": "businessName should be a string",
       "string.min": "businessName should include 2 characters or more",
@@ -27,9 +28,9 @@ const createBusinessProfileSchema = async () => {
       "string.min": "experience should include 2 characters or more",
       "any.required": "experience is required",
     }),
-    rate: Joi.string().min(2).required().messages({
+    rate: Joi.string().min(1).required().messages({
       "string.base": "rate should be a string",
-      "string.min": "rate should include 2 characters or more",
+      "string.min": "rate should include 1 characters or more",
       "any.required": "rate is required",
     }),
     viewedNumber: Joi.number().required().messages({

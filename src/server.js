@@ -92,6 +92,8 @@ app.get(
 app.get("/auth/facebook",cors(), passport.authenticate('facebook', {scope: ['email']}));
 app.get("/auth/facebook/callback",cors(), passport.authenticate("facebook"), facebookCallback);
 
+app.use("/images", express.static("public/storage"));
+
 app.use("/api", cors(), userRouter);
 app.use("/api", cors(), authRouter);
 app.use("/api", cors(), eventRouter);

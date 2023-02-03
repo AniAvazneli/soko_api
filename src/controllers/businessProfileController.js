@@ -8,7 +8,7 @@ export const getAllBusinessProfile = async (req, res) => {
 };
 
 export const createBusinessProfile = async (req, res) => {
-  const { body } = req;
+  const { file, body } = req;
 
   const validator = await createBusinessProfileSchema(body);
   const { value, error } = validator.validate(body);
@@ -18,7 +18,7 @@ export const createBusinessProfile = async (req, res) => {
   }
 
   const {
-    name,
+    userID,
     avatar,
     businessName,
     memberSince,
@@ -34,7 +34,7 @@ export const createBusinessProfile = async (req, res) => {
   const id = uuidv4();
 
   await BusinessProfile.create({
-    name,
+    userID,
     id,
     avatar,
     businessName,
@@ -72,7 +72,7 @@ export const updateBusinessProfile = async (req, res) => {
   }
 
   const {
-    name,
+    userID,
     avatar,
     businessName,
     memberSince,
@@ -88,7 +88,7 @@ export const updateBusinessProfile = async (req, res) => {
   await BusinessProfile.findOneAndUpdate(
     { id: params.id },
     {
-      name,
+      userID,
       avatar,
       businessName,
       memberSince,

@@ -565,6 +565,9 @@ paths:
                   items:
                     type: string
                     format: binary
+                userID:
+                  type: string
+                  example: შოკოტელა - ხელნაკეთი შოკოლადები
                 businessName:
                   type: string
                   example: შოკოტელა - ხელნაკეთი შოკოლადები
@@ -622,6 +625,9 @@ paths:
                   items:
                     type: string
                     format: binary
+                userID:
+                  type: string
+                  example: შოკოტელა - ხელნაკეთი შოკოლადები
                 businessName:
                   type: string
                   example: შოკოტელა - ხელნაკეთი შოკოლადები
