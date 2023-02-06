@@ -10,11 +10,20 @@ export const getAllServices = async (req, res) => {
 export const createService = async (req, res) => {
   const { file, body } = req;
 
-  
-  const eventTypeIdentifer = Array.isArray(body.eventType) ? body.eventType : body.eventType.split(",")
+  const eventTypeIdentifer = Array.isArray(body.eventType)
+    ? body.eventType
+    : body.eventType.split(",");
 
-  const validator = await addServiceSchema({...body,eventType : eventTypeIdentifer, gallery: 'images/' + file.originalname});
-  const { value, error } = validator.validate({...body,eventType : eventTypeIdentifer, gallery: 'images/' + file.originalname});
+  const validator = await addServiceSchema({
+    ...body,
+    eventType: eventTypeIdentifer,
+    gallery: "images/" + file.originalname,
+  });
+  const { value, error } = validator.validate({
+    ...body,
+    eventType: eventTypeIdentifer,
+    gallery: "images/" + file.originalname,
+  });
 
   if (error) {
     return res.status(401).json(error.details);
@@ -57,8 +66,13 @@ export const createService = async (req, res) => {
 };
 
 export const updateService = async (req, res) => {
-  const { params, body } = req;
-  const eventTypeIdentifer = Array.isArray(body.eventType) ? body.eventType : body.eventType.split(",")
+  const { params, file, body } = req;
+
+  console.log(body)
+  const eventTypeIdentifer = Array.isArray(body.eventType)
+    ? body.eventType
+    : body.eventType.split(",");
+
   const service = await Service.findOne({ id: params.id });
 
   if (!service) {
@@ -67,8 +81,16 @@ export const updateService = async (req, res) => {
       .json({ message: "there is no service with this id" });
   }
 
-  const validator = await addServiceSchema({...body,eventType : eventTypeIdentifer, gallery: 'images/' + file.originalname});
-  const { value, error } = validator.validate({...body,eventType : eventTypeIdentifer, gallery: 'images/' + file.originalname});
+  const validator = await addServiceSchema({
+    ...body,
+    eventType: eventTypeIdentifer,
+    gallery: "images/" + file.originalname,
+  });
+  const { value, error } = validator.validate({
+    ...body,
+    eventType: eventTypeIdentifer,
+    gallery: "images/" + file.originalname,
+  });
 
   if (error) {
     return res.status(422).json(error.details);

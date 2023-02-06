@@ -9,9 +9,25 @@ export const getAllBusinessProfile = async (req, res) => {
 
 export const createBusinessProfile = async (req, res) => {
   const { file, body } = req;
+  const socialsIdentifier = Array.isArray(body.socials)
+    ? body.socials
+    : body.socials.split(",");
+  const tagsIdentifier = Array.isArray(body.tags)
+    ? body.tags
+    : body.tags.split(",");
 
-  const validator = await createBusinessProfileSchema(body);
-  const { value, error } = validator.validate(body);
+  const validator = await createBusinessProfileSchema({
+    ...body,
+    socials: socialsIdentifier,
+    tags: tagsIdentifier,
+    avatar: "images/" + file.originalname,
+  });
+  const { value, error } = validator.validate({
+    ...body,
+    socials: socialsIdentifier,
+    tags: tagsIdentifier,
+    avatar: "images/" + file.originalname,
+  });
 
   if (error) {
     return res.status(401).json(error.details);
@@ -54,7 +70,14 @@ export const createBusinessProfile = async (req, res) => {
 };
 
 export const updateBusinessProfile = async (req, res) => {
-  const { params, body } = req;
+  const { params, file, body } = req;
+
+  const socialsIdentifier = Array.isArray(body.socials)
+    ? body.socials
+    : body.socials.split(",");
+  const tagsIdentifier = Array.isArray(body.tags)
+    ? body.tags
+    : body.tags.split(",");
 
   const businessProfile = await BusinessProfile.findOne({ id: params.id });
 
@@ -64,8 +87,18 @@ export const updateBusinessProfile = async (req, res) => {
       .json({ message: "there is no businessProfile with this id" });
   }
 
-  const validator = await createBusinessProfileSchema(body);
-  const { value, error } = validator.validate(body);
+  const validator = await createBusinessProfileSchema({
+    ...body,
+    socials: socialsIdentifier,
+    tags: tagsIdentifier,
+    avatar: "images/" + file.originalname,
+  });
+  const { value, error } = validator.validate({
+    ...body,
+    socials: socialsIdentifier,
+    tags: tagsIdentifier,
+    avatar: "images/" + file.originalname,
+  });
 
   if (error) {
     return res.status(422).json(error.details);

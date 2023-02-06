@@ -561,10 +561,8 @@ paths:
               type: "object"
               properties:
                 avatar:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
+                  type: string
+                  format: binary
                 userID:
                   type: string
                   example: შოკოტელა - ხელნაკეთი შოკოლადები
@@ -621,10 +619,8 @@ paths:
               type: "object"
               properties:
                 avatar:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
+                  type: string
+                  format: binary
                 userID:
                   type: string
                   example: შოკოტელა - ხელნაკეთი შოკოლადები

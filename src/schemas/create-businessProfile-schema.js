@@ -7,12 +7,10 @@ const createBusinessProfileSchema = async () => {
       "string.min": "userID should include 2 characters or more",
       "any.required": "userID is required",
     }),
-    avatar: Joi.array().items(
-      Joi.string().required().messages({
-        "array.base": "avatar should be a array",
-        "any.required": "avatar is not required",
-      })
-    ),
+    avatar: Joi.string().required().messages({
+      "array.base": "avatar should be a array",
+      "any.required": "avatar is not required",
+    }),
     businessName: Joi.string().min(2).required().messages({
       "string.base": "businessName should be a string",
       "string.min": "businessName should include 2 characters or more",
