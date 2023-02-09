@@ -20,13 +20,13 @@ export const createBusinessProfile = async (req, res) => {
     ...body,
     socials: socialsIdentifier,
     tags: tagsIdentifier,
-    avatar: "images/" + file.originalname,
+    avatar: "/images/" + file.filename,
   });
   const { value, error } = validator.validate({
     ...body,
     socials: socialsIdentifier,
     tags: tagsIdentifier,
-    avatar: "images/" + file.originalname,
+    avatar: "/images/" + file.filename,
   });
 
   if (error) {

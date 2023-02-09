@@ -8,7 +8,7 @@ export const getAllServices = async (req, res) => {
 };
 
 export const createService = async (req, res) => {
-  const { file, body } = req;
+  const { files, body } = req;
 
   const eventTypeIdentifer = Array.isArray(body.eventType)
     ? body.eventType
@@ -17,12 +17,12 @@ export const createService = async (req, res) => {
   const validator = await addServiceSchema({
     ...body,
     eventType: eventTypeIdentifer,
-    gallery: "images/" + file.originalname,
+    gallery: files.map((file) => "/images/" + file.filename),
   });
   const { value, error } = validator.validate({
     ...body,
     eventType: eventTypeIdentifer,
-    gallery: "images/" + file.originalname,
+    gallery: files.map((file) => "/images/" + file.filename),
   });
 
   if (error) {
@@ -68,7 +68,7 @@ export const createService = async (req, res) => {
 export const updateService = async (req, res) => {
   const { params, file, body } = req;
 
-  console.log(body)
+  console.log(body);
   const eventTypeIdentifer = Array.isArray(body.eventType)
     ? body.eventType
     : body.eventType.split(",");
